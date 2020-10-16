@@ -25,7 +25,19 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    //protected $redirectTo = '/home
+    
+    //userテーブルに登録している、role_idの値で遷移先を判定
+    public function redirectTo(){
+        $role = $this->guard()->user()->role_id;
+        
+        if($role === 2 ){
+            return '/home';
+        }
+        else{
+            return 'admin/home';
+        }
+    }
 
     /**
      * Create a new controller instance.
@@ -36,4 +48,9 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+//デフォルトでは、'e-mail'で判定しているところを、'user_name'に変更したので、オーバーライドする
+    public function username(){
+        return 'user_name';
+    }
+    
 }

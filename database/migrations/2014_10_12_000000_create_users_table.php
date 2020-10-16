@@ -14,7 +14,7 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->bigIncrements('id');// 自動採番してくれる値
+            $table->bigIncrements('id');
             $table->unsignedInteger('employee_id')->length(5)->foreign()->references('id')->on('employees');
             $table->string('user_name'); 
             $table->string('password');

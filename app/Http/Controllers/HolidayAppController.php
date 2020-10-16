@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\HolidayApplication;
+use App\Http\Request\HolidayAppPostRequest;
+use App\Http\Request\SearchIndexReq;
+use Illuminate\Support\Facades\Auth;
+use App\Services\HolidayAppService;
+use App\Services\HolidaySpanService;
 
 class HolidayAppController extends Controller
 {
@@ -13,14 +19,18 @@ class HolidayAppController extends Controller
         return view('holiday.index');
     }
     
-    public function create()
+    public function create(Holidayapplication $holidayApplication)
     {
-        return view('holiday.create');
+        $mode = 'new';
+        return view('holiday.create', compact('holidayApplication', 'mode'));
     }
     
-    public function store()
+    public function store(HolidayAppPostRequest $req)
     {
-        return redirect('holiday/holiday_applications/new');
+        $parmas = $req->all();
+        $this->holidayAppService->storeHoliday($params);
+        
+        return redirect('holiday/holiday_applications');
     }
     
     public function duration()

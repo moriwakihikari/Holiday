@@ -15,7 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
 
 //一覧画面
 Route::get('holiday/holiday_applications', 'HolidayAppController@index')->name('holiday_index');
@@ -50,3 +49,5 @@ Route::put('holiday/admin/holidayapplications/{holidayApplication}/show', 'Holid
 
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();

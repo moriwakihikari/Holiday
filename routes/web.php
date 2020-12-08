@@ -20,10 +20,10 @@ Route::get('/', function () {
 Route::get('holiday/holiday_applications', 'HolidayAppController@index')->name('holiday_index');
 //申請画面
 Route::get('holiday/holiday_applications/new', 'HolidayAppController@create')->name('holiday_create');
-//新規作成
+//新規作成post
 Route::post('holiday/holiday_applications/new', 'HolidayAppController@store')->name('holiday_store');
 //合計期間の算出を行うAjax通信
-Route::get('holiday/get_holiday_duration', 'HolidayAppController@duration')->name('get_holiday_duration');
+Route::get('holiday/get_holiday_duration', 'HolidayAppController@duration');
 //詳細画面
 Route::get('holiday/holiday_applications/{holidayApplication}/show', 'HolidayAppController@show')->name('holiday_show');
 //修正画面

@@ -13,6 +13,15 @@ use App\Services\HolidaySpanService;
 class HolidayAppController extends Controller
 {
     
+    protected $holidayAppService;
+    protected $holidaySpanService;
+    
+    public function __construct(HolidayAppService $holidayAppService, HolidaySpanService $holidaySpanService)
+    {
+        $this->holidayAppService = $holidayAppService;
+        $this->holidaySpanService = $holidaySpanService;
+    }
+    
     //admin共通
     public function index()
     {
@@ -33,9 +42,12 @@ class HolidayAppController extends Controller
         return redirect('holiday/holiday_applications');
     }
     
-    public function duration()
+    public function duration(Request $req)
     {
-        return $this;
+        $form = $req->all();
+        $to = $req->all();
+        $days = $this->holidaySpanService->getDuration($form, $to);
+        return $days;
     }
     
     //admin共通

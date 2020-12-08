@@ -5,8 +5,16 @@
  */
 
 require('./bootstrap');
+//require('./dataTables');
+//require('./editAndDelete');
+//require('./holidayApplication');
+require('./my-timepicker.js');
+require('./yasumi');
+//require('admin-lte/dist/js/adminlte'); //npmでインストールしたものを読み込むこれをしないとサイドバー動かなかった
+//require('datatables.net-dt/js/dataTables.dataTables');
 
 window.Vue = require('vue');
+
 
 /**
  * The following block of code may be used to automatically register your

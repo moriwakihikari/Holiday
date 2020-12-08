@@ -1,5 +1,7 @@
 @extends('layouts.app')
+
 @section('content')
+
 <div class="container ">
     @if($mode == 'new')
     <div class="section-header">
@@ -42,15 +44,37 @@
                     <label class="col-sm-1 text-right">提出日</label>                
 					<input id="submit_datetime" name="submit_datetime" type="text" class="col-sm-3" value="{{ \Carbon\Carbon::now()->format('Y/m/d') }}" readonly/>
                 </div>
+                
                 <div class="row mt-4">
                     <label class="col-sm-1 text-right">期間</label>
-					<input id="holiday_date_from" name="holiday_date_from" type="text" class="col-sm-3 calendar @error('holiday_date_from') is-invalid @enderror" value="{{ old('holiday_date_from', \App\HolidayApplication::parseDate($holidayApplication->holiday_date_from)) }}"/>
+					<input id="holiday_date_from" name="holiday_date_from" type="text" readonly="readonly" class="col-sm-3 calendar @error('holiday_date_from') is-invalid @enderror" value="{{ old('holiday_date_from', \App\HolidayApplication::parseDate($holidayApplication->holiday_date_from)) }}"/>
                     <label class="col-sm-1 text-center" style="font-size:130%;">～</label>
-                    <input id="holiday_date_to" name="holiday_date_to" type="text" class="col-sm-3 calendar @error('holiday_date_to') is-invalid @enderror" value="{{ old('holday_date_to', \App\HolidayApplication::parseDate($holidayApplication->holiday_date_to)) }}"/>
+                    <input id="holiday_date_to" name="holiday_date_to" data-mindate=today type="text" class="col-sm-3 calendar @error('holiday_date_to') is-invalid @enderror" value="{{ old('holday_date_to', \App\HolidayApplication::parseDate($holidayApplication->holiday_date_to)) }}"/>
                     <input id="total_date" name="total_date" type="text" class="col-sm-2 ml-4 text-right" value="{{ old('total_date', $holidayApplication->total_days) }}" readonly/>
                     <label class="col-sm-1">日間</label>
                 </div>
+                
+                
                 <div class="row mt-4">
+                    <script>
+                        $(function () {
+                            $('time_form').datetimepicker({
+                                locale: 'ja',
+                                format : 'HH:mm',
+                                stepping: 15,
+                                sideBySide: true,
+                            });
+                        });
+                        
+                        $(function () {
+                            $('time_to').datetimepicker({
+                                locale: 'ja',
+                                format : 'HH:mm',
+                                stepping: 1,
+                                sideBySide: true,
+                            });
+                        });
+                    </script>
                     <label for="time" class="col-sm-1 text-right">時間</label>
                     <select id="time_from" name="time_from" class="col-sm-3 timepicker @error('time_from') is-invalid @enderror" data-old="{{ old('time_from', \App\HolidayApplication::parseTime($holidayApplication->holiday_time_from)) }}"><option placeholder=""></option></select>
                     <label class="col-sm-1 text-center" style="font-size:130%;">～</label> 

@@ -4,5 +4,23 @@
 // Variables
 @import 'variables';
 
+//fontawesome
+@import '~@fortawesome/fontawesome-free/css/all';
+@import '~@fortawesome/fontawesome-free/css/brands';
+@import '~@fortawesome/fontawesome-free/css/regular';
+@import '~@fortawesome/fontawesome-free/css/solid';
+
+@import '~datatables.net-dt/css/jquery.dataTables';
+
+
+// AdminLTE
+@import '~admin-lte/dist/css/adminlte.min.css';
+
+// jquery -ui
+@import '~jquery-ui/themes/base/all.css';
+
+
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+@import '~tempusdominus-bootstrap-4/src/sass/tempusdominus-bootstrap-4-build';
